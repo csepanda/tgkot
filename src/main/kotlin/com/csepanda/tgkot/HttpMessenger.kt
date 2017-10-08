@@ -9,22 +9,22 @@ package com.csepanda.tgkot
 
 import com.google.gson.Gson
 
-typealias HttpHeaders = Map<String, List<String>>
+internal typealias HttpHeaders = Map<String, List<String>>
 
-class InvalidHttpRequestFormat() : RuntimeException()
-class HttpResponseMessage(
+internal class InvalidHttpRequestFormat() : RuntimeException()
+internal class HttpResponseMessage(
         val status : Int,
         val headers: HttpHeaders,
         val content: ByteArray?
 )
-class HttpRequestMessage(
+internal class HttpRequestMessage(
         val uri    : String,
         val method : String,
         val body   : ByteArray?,
         val headers: HttpHeaders?
 )
 
-fun httpRequest(requestMessage: HttpRequestMessage): HttpResponseMessage {
+internal fun httpRequest(requestMessage: HttpRequestMessage): HttpResponseMessage {
     val url = URL(requestMessage.uri)
     val httpCon = url.openConnection() as HttpURLConnection
     httpCon.doOutput      = true
